@@ -1,9 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './About.css'
 import about_img from '../../assets/about.png'
 import play_icon from '../../assets/play-icon.png'
-const About = ({setPlayState}) => {
+import Navbar from '../Navbar/Narbar'
+import VideoPlayer from '../VideoPlayer/VideoPlayer'
+
+const About = () => {
+  const [playState,setPlayState]=useState(false);
+
   return (
+    <>
+    <Navbar defaultCss={true}/>
     <div className='about'>
       <div className="about-left">
         <img src={about_img} alt="" className='about-img' />
@@ -19,8 +26,10 @@ const About = ({setPlayState}) => {
             <li>Events and pledges that invite you to adopt a more sustainable lifestyle</li>
         </ul>
       </div>
+      <VideoPlayer playState={playState} setPlayState={setPlayState}/>
 
     </div>
+    </>
   )
 }
 

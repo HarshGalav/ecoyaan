@@ -3,8 +3,10 @@ import './Navbar.css'
 import logo from '../../assets/logo.png'
 import { Link } from 'react-scroll';
 import menu_icon from '../../assets/menu-icon.png'
+import { Outlet as AnotherName, Link as AnotherLink } from "react-router-dom";
 
-const Navbar = () => {
+
+const Navbar = ({defaultCss}) => {
     const [sticky,setSticky]=useState(false);
     useEffect(()=>{
         window.addEventListener('scroll',()=>{
@@ -19,11 +21,12 @@ const Navbar = () => {
     }
 
   return (
-    <nav className={`container ${sticky ? 'dark-nav':''}`}>
+    <nav className={`container ${sticky ? 'dark-nav': ''} ${defaultCss ? 'dark-nav' : ''}`}>
       <img src={logo} alt="" className='logo' />
       <ul className={mobileMenu?'':'hide-mobile-menu'}> 
         <li><Link to='hero' smooth={true} offset={0} duration={500}>Home</Link></li>
-        <li><Link to='about' smooth={true} offset={-150} duration={500}>About Us</Link></li>
+        {/* <li><Link to='about' smooth={true} offset={-150} duration={500}>About Us</Link></li> */}
+        <li><AnotherLink to='about'>About Us</AnotherLink></li>
         <li><Link to='contact' smooth={true} offset={-260} duration={500} className='btn'>Contact us</Link></li>
       </ul>
       <img src={menu_icon} alt="" className='menu-icon' onClick={toggleMenu}/>
